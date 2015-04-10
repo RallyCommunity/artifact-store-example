@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Artifact Store example</title>
+
+    <script type="text/javascript" src="/apps/2.0/sdk.js"></script>
+
+    <script type="text/javascript">
+        Rally.onReady(function () {
+                Ext.define("CustomApp",{extend:"Rally.app.App",componentCls:"app",launch:function(){var lookback=30,startDate=new Date(new Date-864e5*lookback).toISOString(),filters=[{property:"LastUpdateDate",operator:">=",value:startDate}],artifacts=Ext.create("Rally.data.wsapi.artifact.Store",{models:["UserStory","Defect"],fetch:["FormattedID","Name","Feature"],autoLoad:!0,filters:filters,listeners:{load:this._onDataLoaded,scope:this}})},_onDataLoaded:function(store,data){this._customRecords=[],_.each(data,function(artifact,index){this._customRecords.push({_ref:artifact.get("_ref"),FormattedID:artifact.get("FormattedID"),Name:artifact.get("Name"),Feature:artifact.get("Feature")})},this),this._createGrid(store,data)},_createGrid:function(store,data){var that=this,g=Ext.create("Rally.ui.grid.Grid",{itemId:"mygrid",store:store,enableEditing:!1,showRowActionsColumn:!1,columnCfgs:[{text:"Formatted ID",dataIndex:"FormattedID"},{text:"Name",dataIndex:"Name"},{text:"Feature",dataIndex:"Feature",renderer:function(value){return value?value.FormattedID+":"+value._refObjectName:"None"}}],height:400});this.add(g)}});
+
+            Rally.launchApp('CustomApp', {
+                name:"Artifact Store example",
+	            parentRepos:""
+            });
+
+        });
+    </script>
+
+
+    <style type="text/css">
+        
+    </style>
+</head>
+<body>
+</body>
+</html>
