@@ -2,7 +2,8 @@ Artifact Store example
 =========================
 
 ## Overview
-Example of using [Rally.data.wsapi.artifact.Store.](https://help.rallydev.com/apps/2.0/doc/#!/api/Rally.data.wsapi.artifact.Store) showing how Feature attribute can be accessed on stories in artifact store. 
+Example of using [Rally.data.wsapi.artifact.Store](https://help.rallydev.com/apps/2.0/doc/#!/api/Rally.data.wsapi.artifact.Store)
+It shows Feature field can be accessed on user stories in artifact store, while other types in the store don't have that field. 
 
 ![](pic.png)
 
